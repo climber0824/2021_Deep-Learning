@@ -42,31 +42,43 @@ def display_image_with_gen_data(data, gen_data, label=None):
         raise ValueError('label should be in [0,8]')
 
     bdry, dfct, nrml = data[0, :, :], data[1, :, :], data[2, :, :]
+    ori_img = torch.zeros([26, 26, 3], dtype=torch.float)
+    ori_img[:, :, 0] = data[0, :, :]
+    ori_img[:, :, 1] = data[1, :, :]
+    ori_img[:, :, 2] = data[2, :, :]
 
     plt.figure()
     plt.subplots_adjust(left=0.2, right=0.8, top=0.9, bottom=0.05, wspace=0, hspace=0.2)
     plt.suptitle(title, fontsize=14)
-    plt.subplot(1+N, 3, 1)
+    plt.subplot(1+N, 4, 1)
     plt.title('boundary')
     plt.imshow(bdry)
-    plt.subplot(1+N, 3, 2)
+    plt.subplot(1+N, 4, 2)
     plt.title('defect')
     plt.imshow(dfct)
-    plt.subplot(1+N, 3, 3)
+    plt.subplot(1+N, 4, 3)
     plt.title('normal')
     plt.imshow(nrml)
+    plt.subplot(1+N, 4, 4)
+    plt.title('reconstruct')
+    plt.imshow(ori_img)
 
     for i in range(N):
+        img[:, :, 0] = gen_data[i][0, :, :]
+        img[:, :, 1] = gen_data[i][1, :, :]
+        img[:, :, 2] = gen_data[i][2, :, :]
         gen_bdry = gen_data[i][0, :, :]
         gen_dfct = gen_data[i][1, :, :]
         gen_nrml = gen_data[i][2, :, :]
 
-        plt.subplot(1+N, 3, (i+1)*3 + 1)
+        plt.subplot(1+N, 4, (i+1)*4 + 1)
         plt.imshow(gen_bdry)
-        plt.subplot(1+N, 3, (i+1)*3 + 2)
+        plt.subplot(1+N, 4, (i+1)*4 + 2)
         plt.imshow(gen_dfct)
-        plt.subplot(1+N, 3, (i+1)*3 + 3)
+        plt.subplot(1+N, 4, (i+1)*4 + 3)
         plt.imshow(gen_nrml)
+        plt.subplot(1+N, 4, (i+1)*4 + 4)
+        plt.imshow(img)
     
     plt.show()
 
