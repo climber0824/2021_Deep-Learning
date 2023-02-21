@@ -11,4 +11,4 @@ Implement autoencoder trained on wafer data using PyTorch.
 Implementation of a convolutinoal neural network based on Numpy library, without using any deep learning framework.
 
 ## Final Project: [Marine Debris Prediction Based on Machine Learning Methods](https://github.com/climber0824/2021_Deep-Learning/tree/main/final_project)
-Using Adaboost, Random forest, Gradient-Boosting, and Neural Network with data-preprocessing predicting on the Marine debris dataset.
+Using Adaboost, Random forest, Gradient-Boosting, and Neural Network with data-preprocessing predicting on the [Marine debris dataset](https://aidea-web.tw/topic/031e2daa-cba0-4d2b-974b-019d429348a7).
